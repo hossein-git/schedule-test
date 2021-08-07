@@ -6,6 +6,7 @@ namespace Modules\User\Services;
 use Illuminate\Http\Response;
 use Modules\Auth\Facades\AuthFacade;
 use Modules\Auth\Facades\UserProviderFacade;
+use Modules\User\Events\CreateScheduleEvent;
 use Modules\User\Http\Resources\DashboardResourceCollection;
 use Modules\User\Http\Resources\ScheduleResource;
 use Modules\User\Http\Resources\ScheduleResourceCollection;
@@ -86,6 +87,8 @@ class UserService
     {
         $schedule = $this->scheduleRepo->create($input);
         $schedule->jobs()->attach($input['jobs']);
+        $scheduleArray = ScheduleResource::make($schedule)->toArray(request());
+        event(new CreateScheduleEvent($scheduleArray));
         return $schedule;
     }
 

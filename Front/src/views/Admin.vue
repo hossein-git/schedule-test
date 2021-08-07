@@ -85,10 +85,26 @@ export default {
             alert('Error happend')
           })
           .finally(() => this.loading = false)
+    },
+    initialEcho() {
+      Echo.private('new-schedules')
+          .listen('Modules\\User\\Events\\CreateScheduleEvent', (e) => {
+            this.items.push({
+              id: e.id,
+              name: e.name,
+              statusText: e.statusText,
+              statusColor: e.statusColor,
+              user: e.user,
+              jobs: e.jobs,
+              date: e.date,
+              created_at: e.created_at,
+            })
+          });
     }
   },
   created() {
     this.initials();
+    // this.initialEcho();
   }
 }
 </script>

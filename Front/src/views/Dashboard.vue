@@ -6,11 +6,11 @@
       </h4>
       <div class="card-header h4">
         <span class="float-start">Schedules</span>
-        <button :disabled="loading" class="btn btn-sm float-end" @click="weekCounter++">></button>
-        <button :disabled="loading" v-show="weekCounter !== 0" class="btn btn-sm ms-2 float-end" @click="weekCounter--"><</button>
+        <button :disabled="loading" class="btn btn-sm float-end" @click="weekCounter++"> > </button>
+        <button :disabled="loading" v-show="weekCounter !== 0" class="btn btn-sm ms-2 float-end" @click="weekCounter--"> &lt; </button>
       </div>
       <div class="card-body">
-        <table class="table">
+        <table class="table table-striped">
           <thead>
           <tr>
             <th scope="col">JOB</th>
