@@ -9,11 +9,20 @@
 - cd Front
 - npm install
 - npm run serve
-- 
+
+##Front Routes
+
+- /login
+- /admin
+- /worker
+- /
+
 ### Technologies
 - Laravel 8
 - Redis
 - Docker (laravel sail)
+- Bootstrap 5
+- VueJs 3
 
 ### Design Patterns
 - Modular
