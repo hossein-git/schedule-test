@@ -10,6 +10,7 @@ use Modules\User\Events\CreateScheduleEvent;
 use Modules\User\Http\Resources\DashboardResourceCollection;
 use Modules\User\Http\Resources\ScheduleResource;
 use Modules\User\Http\Resources\ScheduleResourceCollection;
+use Modules\User\Models\Job;
 use Modules\User\Models\Schedule;
 use Modules\User\Repositories\JobRepository;
 use Modules\User\Repositories\ScheduleRepository;
@@ -87,6 +88,7 @@ class UserService
     {
         $schedule = $this->scheduleRepo->create($input);
         $schedule->jobs()->attach($input['jobs']);
+        $schedule->status = Schedule::PENDING_STATUS;
         $scheduleArray = ScheduleResource::make($schedule)->toArray(request());
         event(new CreateScheduleEvent($scheduleArray));
         return $schedule;
